@@ -15,6 +15,9 @@ const express = require('express');
 const cors = require('cors');
 const https = require('https');
 
+//fetch api
+const fetch = require('node-fetch');
+
 //подключение к БД PostreSQL
 const sequelize = require('./botmonitor/connections/db')
 
@@ -78,7 +81,10 @@ const start = async () => {
             // повторить с интервалом каждые 1 минуту
             let timerId = setInterval(async() => {
                 minutCount++  // a day has passed
-                await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!')
+                if (2>3) {
+                    await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!')
+                }
+                
             }, 60000); //каждую 1 минут
 
             // остановить вывод через 30 дней
