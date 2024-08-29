@@ -78,7 +78,7 @@ const start = async () => {
             // повторить с интервалом каждые 1 минуту
             let timerId = setInterval(async() => {
                 minutCount++  // a day has passed
-                await bot.sendMessage(chatId, 'Тревога! Бот заказчика не отвечает!')
+                await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!')
             }, 60000); //каждую 1 минут
 
             // остановить вывод через 30 дней
