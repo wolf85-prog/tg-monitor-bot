@@ -16,7 +16,7 @@ const cors = require('cors');
 const https = require('https');
 
 //подключение к БД PostreSQL
-const sequelize = require('./bot/connections/db')
+const sequelize = require('./botmonitor/connections/db')
 
 const PORT = process.env.PORT || 8003;
 
