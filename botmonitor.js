@@ -92,7 +92,7 @@ const start = async () => {
                     .then((response) => response.json())
                     .then((data) => {
                         if (data) {
-                            console.log("data: ", data)
+                            console.log("Мониторинг Ноушен: Ок!")
                         } else {
                             console.log("Manager TelegramId не найден!")
                         }                             

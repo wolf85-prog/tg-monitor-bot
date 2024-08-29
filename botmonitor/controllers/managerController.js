@@ -3,19 +3,6 @@ const { Client } = require("@notionhq/client");
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
 
-//получить TelegramID менеджера по его id
-async function getManagerId(id) {
-    try {
-        const manager = await notion.pages.retrieve({
-            page_id: id,
-        });
-
-        return manager.properties.ID.rich_text[0]?.plain_text; 
-        
-    } catch (error) {
-        console.error(error.message)
-    }
-}
 
 //получить id менеджера по его TelegramID
 async function getManagerChatId(id) {
