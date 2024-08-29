@@ -92,7 +92,7 @@ const start = async () => {
                     .then((response) => response.json())
                     .then((data) => {
                         if (data) {
-                            chatId_manager = data
+                            console.log("data: ", data)
                         } else {
                             console.log("Manager TelegramId не найден!")
                         }                             
