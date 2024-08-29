@@ -71,6 +71,20 @@ const start = async () => {
         httpsServer.listen(PORT, async () => {
             console.log('HTTPS Server Bot Monitor running on port ' + PORT);
 
+
+            // начало цикла ----------------------------------------------------------------------
+            // 86400 секунд в дне
+            var minutCount = 0;
+            // повторить с интервалом каждые 1 минуту
+            let timerId = setInterval(async() => {
+                minutCount++  // a day has passed
+                await bot.sendMessage(chatId, 'Тревога! Бот заказчика не отвечает!')
+            }, 60000); //каждую 1 минут
+
+            // остановить вывод через 30 дней
+            if (minutCount == 43200) {
+                clearInterval(timerId);
+            }
  
         });
 
