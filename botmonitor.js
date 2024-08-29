@@ -10,6 +10,8 @@ const { Op } = require('sequelize')
 const { Client } = require("@notionhq/client");
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
+const router = require('./botmonitor/routes/index')
+
 const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
@@ -22,11 +24,13 @@ const fetch = require('node-fetch');
 const sequelize = require('./botmonitor/connections/db')
 
 const PORT = process.env.PORT || 8003;
+const botApiUrl = process.env.REACT_APP_API_URL
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use('/', router)
 
 
 // Certificate
@@ -78,11 +82,27 @@ const start = async () => {
             // начало цикла ----------------------------------------------------------------------
             // 86400 секунд в дне
             var minutCount = 0;
+            let count = 0
             // повторить с интервалом каждые 1 минуту
             let timerId = setInterval(async() => {
                 minutCount++  // a day has passed
-                if (2>3) {
-                    await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!')
+
+                try {
+                    const chat = await fetch(`${botApiUrl}/managers/chat/805436270`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data) {
+                            chatId_manager = data
+                        } else {
+                            console.log("Manager TelegramId не найден!")
+                        }                             
+                    });
+                } catch (error) {
+                    console.log(error.message)
+                    count++
+                    if (count === 3) {
+                       await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!') 
+                    }
                 }
                 
             }, 60000); //каждую 1 минут
