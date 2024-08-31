@@ -25,6 +25,7 @@ const sequelize = require('./botmonitor/connections/db')
 
 const PORT = process.env.PORT || 8003;
 const botApiUrl = process.env.REACT_APP_API_URL
+const adminChatId = process.env.CHAT_ID
 
 const app = express();
 
@@ -103,6 +104,9 @@ const start = async () => {
                     if (count === 2) {
                        await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!') 
                     }
+                    if (count === 3) {
+                        await bot.sendMessage(adminChatId, 'Тревога! Бот заказчика не отвечает!') 
+                     }
                 }
                 
             }, 180000); //каждую 1 минут
