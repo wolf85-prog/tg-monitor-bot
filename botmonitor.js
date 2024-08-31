@@ -100,7 +100,7 @@ const start = async () => {
                 } catch (error) {
                     console.log(error.message)
                     count++
-                    if (count === 3) {
+                    if (count === 2) {
                        await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!') 
                     }
                 }
