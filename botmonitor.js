@@ -102,10 +102,10 @@ const start = async () => {
                     console.log(error.message)
                     count++
                     if (count === 2) {
-                       await bot.sendMessage('805436270', 'Тревога! Бот заказчика не отвечает!') 
+                       await bot.sendMessage('805436270', 'Тревога! Notion недоступен!') 
                     }
                     if (count === 3) {
-                        await bot.sendMessage(adminChatId, 'Тревога! Бот заказчика не отвечает!') 
+                        await bot.sendMessage(adminChatId, 'Тревога! Notion недоступен!') 
                      }
                 }
                 
